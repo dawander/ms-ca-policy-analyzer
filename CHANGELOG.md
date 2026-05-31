@@ -5,6 +5,18 @@ All notable changes to the CA Policy Analyzer will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.15.3] - 2026-05-30
+
+### Added
+
+- **Informational finding for safe "Register security info" policies (MC1326253)** — the credential-registration check in [src/lib/analyzer.ts](src/lib/analyzer.ts) previously stayed silent on policies targeting `urn:user:registersecurityinfo` that had no blocking constraints, so a well-configured registration policy (MFA / authentication strength only) surfaced *no* finding at all and gave no indication it would be affected by the July 2026 change. It now emits an **info-level** finding confirming the policy targets *Register security info*, that it will begin applying during **Windows Hello for Business** and **macOS Platform SSO** registration from **July 6, 2026** (complete July 13), and that it looks safe because it carries no device-compliance, trusted-location, approved/protected-app, or device-filter constraints. The message is report-only-aware (prompts to switch report-only policies to *On* before enforcement) and links to MC1326253. Policies that *do* carry blocking constraints continue to raise the existing medium/high finding.
+
+## [1.15.2] - 2026-05-30
+
+### Changed
+
+- **"Register security info" credential-registration check updated for the confirmed MC1326253 rollout** — Microsoft has now published the official Message Center post **MC1326253** ("Conditional Access policies now apply to Windows Hello for Business and macOS Platform SSO registration"), superseding the earlier preliminary guidance. The `checkCredentialRegistrationConstraints` check in [src/lib/analyzer.ts](src/lib/analyzer.ts) was updated with the confirmed scope and dates: Conditional Access policies scoped to **Register security info** will be evaluated during **Windows Hello for Business** and **macOS Platform SSO** credential registration, closing the gap where these flows previously enforced MFA but did *not* evaluate registration-targeting CA policies (authentication strength, trusted locations, other Grant controls). Gradual rollout begins **July 6, 2026** and completes **July 13, 2026**. The finding title, description, report-only-mode guidance, and reference link (MC1326253 / [policy-all-users-security-info-registration](https://learn.microsoft.com/entra/identity/conditional-access/policy-all-users-security-info-registration)) were all updated from the previous "May 2026 / MC March 2026" placeholders.
+
 ## [1.15.1] - 2026-05-29
 
 ### Fixed
