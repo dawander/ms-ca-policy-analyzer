@@ -27,6 +27,10 @@ The app runs **100% in your browser** — your data never leaves your machine. I
 
 > Full version history lives in [CHANGELOG.md](CHANGELOG.md).
 
+### v1.15.21 — Joey Verlinden Baseline Updated to 2026.6.1 (June 11, 2026)
+
+- **Joey Verlinden preset updated to release [2026.6.1](https://github.com/j0eyv/ConditionalAccessBaseline/releases/tag/2026.6.1)** — preset now points at the `2026.6.1` tag instead of `main`. New release ships 38 ConditionalAccess policies (consolidated from 67), 36 exclusion groups, 3 named locations, and a MigrationTable. The CA005/CA006 app protection variants were merged, and new **CA501–CA505 Agents** policies cover Microsoft Entra Agent Identities (Workload Identities).
+
 ### v1.15 — Lewis Barry Baseline, Policy Fixes & Improvements (June 2, 2026)
 
 **Major additions & changes across v1.15.x:**
@@ -76,7 +80,7 @@ All detected issues ranked Critical → Info. Expand any finding to see the full
 **Two built-in Zero Trust persona baselines** load with one click — each follows [Claus Jespersen's persona framework](https://github.com/microsoft/ConditionalAccessforZeroTrustResources):
 
 - **Kenneth van Surksum — Baseline 2025.10** — community-maintained Zero Trust persona baseline, refreshed quarterly. Strong reference for production-grade tenants. ([github.com/kennethvs/cabaseline202510](https://github.com/kennethvs/cabaseline202510))
-- **Joey Verlinden — Conditional Access Baseline** — persona-based baseline aligned with Microsoft's Zero Trust guidance. The loader pulls the full DCToolbox-style restore bundle from the repo's `Config/` root: 67 ConditionalAccess policies + 33 exclusion groups + named-locations allow-lists + migration table. ([github.com/j0eyv/ConditionalAccessBaseline](https://github.com/j0eyv/ConditionalAccessBaseline/tree/main/Config))
+- **Joey Verlinden — Conditional Access Baseline 2026.6.1** — persona-based baseline aligned with Microsoft's Zero Trust guidance. The loader pulls the full DCToolbox-style restore bundle from the repo's `Config/` root: 38 ConditionalAccess policies + 36 exclusion groups + named-locations allow-lists + migration table. ([github.com/j0eyv/ConditionalAccessBaseline](https://github.com/j0eyv/ConditionalAccessBaseline/tree/2026.6.1/Config))
 
 **Compare against any public GitHub repo** — the **Compare Custom Repo** button accepts:
 
@@ -227,7 +231,7 @@ The app has nine tabs accessible after running an analysis:
 | **Dashboard** | **Zero Trust Scorecard** (Verify Explicitly / Use Least Privilege / Assume Breach — 15 weighted signals across 3 pillars), composite security posture score (0–100), severity breakdown, risk category distribution, and at-a-glance stats |
 | **Policies** | Every CA policy visualized as a flow card: Users → Conditions → Apps → Grant/Session Controls. Search, sort by **Most Findings / Name / State**, and expand any policy to see its findings inline |
 | **Findings** | All detected issues grouped by category and ranked by severity (Critical → Info) with affected policies and remediation guidance. Filter chips for All / Critical / High / Medium / Low / Info |
-| **Templates** | 39 best-practice policy templates compared against your tenant. **One-click load** of two persona-aligned Zero Trust baselines (Kenneth van Surksum 2025.10, Joey Verlinden Conditional Access Baseline including the full DCToolbox Config/ restore bundle) or compare against any public GitHub repo via URL / `owner/repo` shorthand |
+| **Templates** | 39 best-practice policy templates compared against your tenant. **One-click load** of two persona-aligned Zero Trust baselines (Kenneth van Surksum 2025.10, Joey Verlinden Conditional Access Baseline 2026.6.1 including the full DCToolbox Config/ restore bundle) or compare against any public GitHub repo via URL / `owner/repo` shorthand |
 | **Baseline Gap** | Diff the live tenant against the loaded baseline grouped by Zero Trust persona — **Missing** / **Drift** / **Tenant-only** buckets, coverage score, and a **Download deployment bundle** button that ships a ZIP of criticality-ordered README + per-policy Graph-ready JSONs for direct import |
 | **CIS** | CIS Microsoft 365 Foundations Benchmark v7.0.0 alignment — 17 Conditional Access controls in §5.2.2 (plus §1.3.2 idle session) with M365 Message Center advisories surfaced inline |
 | **Locations** | Cross-references every named location (IP ranges, countries, compliant networks) with the CA policies that include or exclude it; flags orphaned references, untrusted locations used with "All Trusted Locations", empty country lists, and overly broad IP ranges |
